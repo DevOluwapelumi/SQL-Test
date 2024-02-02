@@ -1,0 +1,45 @@
+SQL C.A TEST
+
+1.
+SELECT * FROM employees
+WHERE ROWNUM <= 15
+
+2.
+SELECT employees.last_name, employees.salary/2 AS half_salary, departments.department_name, jobs.job_title FROM employees
+JOIN departments ON employees.department_id = departments.department_id
+JOIN jobs ON employees.job_id = jobs.job_id
+
+3.
+SELECT first_name, salary FROM employees
+WHERE salary > 10000
+AND first_name NOT IN ('Nancy', 'Diana', 'Alexander')
+
+4.
+SELECT salary, first_name FROM employees
+WHERE salary > (SELECT MIN(salary) FROM employees)
+
+5.
+SELECT 'My first name is ' || first_name || ', my last name is ' || last_name || ', I am the ' || job_id || ' and my hire date is ' || hire_date FROM employees
+WHERE first_name = 'Bruce'
+AND last_name = 'Ernst'
+
+6.
+SELECT first_name, hire_date, salary*.25 AS twenty_five_percent_salary FROM employees
+WHERE hire_date < '03-JAN-90'
+
+7.
+SELECT * FROM employees
+WHERE first_name LIKE '________r'
+
+8.
+SELECT * FROM employees
+WHERE ROWNUM <= 10
+
+9.
+SELECT first_name, last_name, salary, ROUND(salary/52) AS weekly_salary FROM employees
+WHERE salary/52 > 600
+
+10.
+SELECT first_name FROM employees
+WHERE first_name <= (SELECT MIN(first_name) FROM employees)
+GROUP BY first_name
